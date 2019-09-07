@@ -2,6 +2,15 @@ const express = require("express");
 const path = require("path");
 const PORT = process.env.PORT || 3001;
 const app = express();
+const mongoose = require('mongoose');
+
+// Require all models
+var db = require("./models");
+
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://remote:news1984@ds219078.mlab.com:19078/heroku_gq16t0m0";
+
+// Connect to the Mongo DB
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
